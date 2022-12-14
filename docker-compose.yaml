@@ -2,7 +2,8 @@ version: '3'
 
 services:
   softether:
-    image: softethervpn/vpnserver:v4.39-9772-beta
+    container_name: con_softether
+    image: phamphu232/softethervpn:5.02.5180
     cap_add:
       - NET_ADMIN
     restart: always

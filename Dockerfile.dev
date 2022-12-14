@@ -1,0 +1,30 @@
+FROM ubuntu:20.04 AS softEtherImage
+ARG DEBIAN_FRONTEND=noninteractive
+ENV SOFTETHER_VER=5.02.5180
+SHELL ["/bin/bash", "-c"]
+# Install build tools
+RUN apt-get update && apt-get install -y \
+        cmake \
+        gcc \
+        g++ \
+        make \
+        libncurses5-dev \
+        libssl-dev \
+        libsodium-dev \
+        libreadline-dev \
+        zlib1g-dev \
+        pkg-config \
+        git
+RUN cd /tmp && \
+        git clone -b ${SOFTETHER_VER} https://github.com/SoftEtherVPN/SoftEtherVPN.git
+RUN cd /tmp/SoftEtherVPN && \
+        git submodule init && \
+        git submodule update && \
+        ./configure && \
+        make -C build && \
+        make -C build install
+RUN ln -s /usr/local/lib/libcedar.so /usr/lib/libcedar.so && \
+        ln -s /usr/local/lib/libmayaqua.so /usr/lib/libmayaqua.so
+EXPOSE 443/tcp 992/tcp 1194/tcp 1194/udp 5555/tcp 500/udp 4500/udp
+CMD ["/usr/local/bin/vpnserver", "execsvc"]
+

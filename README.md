@@ -77,6 +77,6 @@ With newer releases vpncmd is directly in the container so you can use it to con
 `docker build -t softethevpn:latest .`
 ```
 # OR
-docker build -t phamphu232/softethervpn -f ./Dockerfile .
-docker build -t phamphu232/softethervpn:5.02.5180 -f ./Dockerfile .
+docker build -t phamphu232/softethervpn -f ./Dockerfile.dev .
+docker build -t phamphu232/softethervpn:5.02.5180 -f ./Dockerfile.dev .
 ```
