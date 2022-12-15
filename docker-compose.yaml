@@ -8,7 +8,7 @@ services:
       - NET_ADMIN
     restart: always
     ports:
-      - 53:53
+      # - 53:53
       - 444:443
       - 992:992
       - 1194:1194/udp
@@ -19,7 +19,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "./softether_data:/mnt"
-      - "./softether_log:/root/server_log"
-      - "./softether_packetlog:/root/packet_log"
-      - "./softether_securitylog:/root/security_log"
+      - "./volumes/mnt:/mnt"
+      - "./volumes/chain_certs:/usr/local/bin/chain_certs"
+      - "./volumes/server_log:/usr/local/bin/server_log"
+      - "./volumes/security_log:/usr/local/bin/security_log"
+      - "./volumes/packet_log:/usr/local/bin/packet_log"

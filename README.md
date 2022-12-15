@@ -79,4 +79,5 @@ With newer releases vpncmd is directly in the container so you can use it to con
 # OR
 docker build -t phamphu232/softethervpn -f ./Dockerfile.dev .
 docker build -t phamphu232/softethervpn:5.02.5180 -f ./Dockerfile.dev .
+docker buildx build -t softethervpn/softethervpn:dev -f .\Dockerfile.dev --push --platform linux/amd64,linux/arm64,linux/arm/v7 .
 ```
